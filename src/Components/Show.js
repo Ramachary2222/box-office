@@ -9,21 +9,48 @@ function Show() {
 
     const [show, setShow] = useState(null);
 
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
     useEffect(() => {
 
-        apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`).then(results => {
-            setShow(results);
-        })
+        let isMount = true;
 
+        apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`).then(results => {
+
+            if (isMount) {
+                setShow(results);
+                setIsLoading(false);
+            }
+
+        }).catch(err => {
+            if (isMount) {
+                setError(err.message);
+                setIsLoading(false);
+            }
+        });
+        return (() => {
+            isMount = false
+        })
     }, [id]);
 
 
 
     console.log('show', show);
 
-    return (
-        <div>Show</div>
-    )
+    if (isLoading) {
+        return <div>
+            Data is being loaded
+        </div>
+    }
+    if (error) {
+        return <div>
+            Error Occured: Oops!!!
+        </div>
+    }
+    return <div>Show</div>;
+
 }
 
 export default Show
