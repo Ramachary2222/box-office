@@ -6,8 +6,7 @@ import Cast from './shows/Cast';
 import Details from './shows/Details';
 import Seasons from './shows/Seasons';
 import ShowMainData from './shows/ShowMainData';
-
-
+import { InfoBlock, ShowPageWrapper } from '../pages/Show.styled';
 
 const initialState = {
     show: null,
@@ -79,26 +78,26 @@ function Show() {
             Error Occured: Oops!!!
         </div>
     }
-    return <div>
+    return <ShowPageWrapper>
 
         <ShowMainData image={show.image} name={show.name} rating={show.rating} summary={show.summary} tags={show.genres} />
 
-        <div>
+        <InfoBlock>
             <h2>Details</h2>
             <Details status={show.status} network={show.network} premeired={show.premeired} />
-        </div>
+        </InfoBlock>
 
-        <div>
+        <InfoBlock>
             <h2>Seasons</h2>
             <Seasons seasons={show._embedded.seasons} />
-        </div>
+        </InfoBlock>
 
-        <div>
+        <InfoBlock>
             <h2>Cast</h2>
             <Cast cast={show._embedded.cast} />
-        </div>
+        </InfoBlock>
 
-    </div>;
+    </ShowPageWrapper>;
 
 }
 
