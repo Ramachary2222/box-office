@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const FlexGrid = styled.div`
+export const FlexGrid = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -46,7 +46,7 @@ export const Star = styled.div`
   display: inline-block;
   width: 18px;
   height: 18px;
-  background-color: #ffc806;
+  background-color: ${props => (props.active ? '#ffc806' : '#ddd')};
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -62,4 +62,4 @@ export const Star = styled.div`
 `;
 
 
-export default FlexGrid
+export default FlexGrid;
