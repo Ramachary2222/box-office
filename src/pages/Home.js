@@ -3,11 +3,12 @@ import ActorGrid from '../Components/Actors/ActorGrid';
 import MainPageLayout from '../Components/MainPageLayout';
 import ShowGrid from '../Components/shows/ShowGrid';
 import { apiGet } from "../misc/config";
+import { useLastQuery } from '../misc/custom-hooks';
 
 
 function Home() {
 
-    const [input, setInput] = useState("");
+    const [input, setInput] = useLastQuery();
     const [results, setResults] = useState(null);
     const [searchOption, setsearchOptions] = useState('shows');
 
